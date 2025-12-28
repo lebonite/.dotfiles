@@ -1,0 +1,57 @@
+{ pkgs, config, lib, ...}:
+# all my virtualisation needs are declared here, like qemu/kvm and docker
+
+{ 
+
+  programs = {
+    virt-manager.enable = true;
+    dconf.enable = true; #virt-manager wont remember stuff without
+  };
+
+
+
+  users.groups.libvirtd.members = [ "hedwig" ]; #we dont want to run with sudo
+
+
+
+
+  virtualisation = {
+
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        swtpm.enable = true;
+          ovmf = {
+            enable = true;
+            packages = [(pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            }).fd];
+          };
+       };
+    };
+  
+    docker = {
+      enable = true;
+      enableOnBoot = false;
+    }; 
+    spiceUSBRedirection.enable = true;
+  };
+
+  # GNS3
+  users.users.hedwig= {
+     
+        packages = with pkgs; [ 
+    
+        gns3-gui 
+        ];
+  };
+  services.gns3-server.enable = true;
+  services.gns3-server.ubridge.enable = true;
+  # Enable ISC DHCP Server
+
+
+}
+
