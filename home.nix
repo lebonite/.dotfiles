@@ -20,8 +20,8 @@
 
 
   imports = [ 
-              ./packages/hyprland/.
-              ./packages/unfreeList/. 
+              ./software/hyprland/.
+              ./software/unfreeList/. 
               ./pw-link/.
             ];
   
