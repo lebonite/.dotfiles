@@ -1,0 +1,5 @@
+2025/12/26-22:21:27.653 17e3 Reusing MANIFEST /home/chiisai/.config/discord/Local Storage/leveldb/MANIFEST-000001
+2025/12/26-22:21:27.694 17e3 Recovering log #186
+2025/12/26-22:21:27.701 17e3 Level-0 table #191: started
+2025/12/26-22:21:27.708 17e3 Level-0 table #191: 37686 bytes OK
+2025/12/26-22:21:27.714 17e3 Delete type=0 #186
