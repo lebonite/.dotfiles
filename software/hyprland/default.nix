@@ -8,7 +8,7 @@
 programs.wofi.enable = true;
     programs.kitty = {
       enable = true;
-      themeFile = "Catppuccin-Frappe";
+      themeFile = "Catppuccin-Macchiato";
     };
     wayland.windowManager.hyprland.enable = true; 
 
@@ -16,7 +16,6 @@ programs.wofi.enable = true;
 
   # Hyprland settings
     wayland.windowManager.hyprland.settings = {
-
 
 
 
@@ -69,7 +68,7 @@ programs.wofi.enable = true;
 	"bind = $mod, R, exec, $menu"
 	"bind = $mod, P, pseudo" # dwindle
 	"bind = $mod, J, togglesplit" # dwindle
-        "$mod, 1 , workspace, 1"
+        "$mod, 1 , exec, hyprctl dispatch workspace 1"
         "$mod, 2 , workspace, 2"
         "$mod, 3 , workspace, 3"
         "$mod, 4 , workspace, 4"
@@ -109,7 +108,12 @@ programs.wofi.enable = true;
         
          # Ags
          "bind = $mod SHIFT, T,exec, ags run ~/.config/ags/app.ts"
-      ];  
+       ]; 
+    bindm = [
+      "$mod, mouse:273, resizewindow"
+      "$mod, mouse:272, movewindow"
+    ];
+ 
 
 #¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸#
 
@@ -162,15 +166,22 @@ programs.wofi.enable = true;
 #  ''|...'|  .||.....| .|.   '|  .||.....| .||.  '|' .|.  .||. .||.....|
 
 
-
-
-
-    general = { 
-       gaps_in = 5;
-       gaps_out = 5;
+     general = { 
+       gaps_in = 10;
+       gaps_out = 20;
        env = "WLR_DRM_NO_ATOMIC,1"; 
        allow_tearing = true;
        resize_on_border = true;
+
+       border_size = 2;
+
+
+
+
+       "col.active_border" = "rgb(8caaee) rgb(8caaee) rgb(f4b8e4) rgb(8caaee) rgb(8caaee) 90deg";
+       "col.inactive_border" = "rgba(4145597e)";
+
+
      }; 
 
 
@@ -192,11 +203,12 @@ programs.wofi.enable = true;
        };
        shadow = {
          enabled = true;
-         range = 4;
+         range = 12;
          render_power = 3;
-         color = "rgba(1a1a1aee)";
+         color = "rgba(f4b8e47e)";
        };
        rounding = 10;
+       rounding_power = 2;
      };
 
 #¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸
@@ -209,9 +221,30 @@ programs.wofi.enable = true;
      };
        
 #¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸#
+
+
+# '||    ||' '||'  .|'''.|    ..|'''.|
+#  |||  |||   ||   ||..  '  .|'     ' 
+#  |'|..'||   ||    ''|||.  ||        
+#  | '|' ||   ||  .     '|| '|.      .
+# .|. | .||. .||. |'....|'   ''|....' 
+
+  misc = {
+
+    force_default_wallpaper = 2;
+  };  
        
-       
-     
+
+
+
+
+
+
+#¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸#
+
+
+
+
      
      #windowrule = "opacity 1.0 override 0.5 override 0.8 override, kitty";
    };

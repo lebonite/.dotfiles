@@ -55,8 +55,8 @@
     hardware.graphics = {
       enable = true; 
       enable32Bit = true;  
-      extraPackages = [ pkgs.amdvlk ];
-      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+#      extraPackages = [ pkgs.amdvlk ];
+#      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     }; 
   
 
@@ -74,7 +74,7 @@
 
     users.users.lebonite = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "adbusers" ]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "input" "wheel" "adbusers" ]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
         librewolf 
         tree

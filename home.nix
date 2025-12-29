@@ -39,8 +39,7 @@
    # ];
   #};
   
-
-
+  services.dunst.enable = true;
 
 
   programs.vim = {
@@ -54,7 +53,12 @@
 
 
 
-
+  programs.ashell = {
+    enable = true;
+    settings = {
+      primary_color = "#ffffff";
+    };
+  };
 
 
   # defalt appl
@@ -99,7 +103,7 @@
       pkgs.prismlauncher
       pkgs.protonup-ng
       pkgs.protontricks
-      pkgs.python
+      pkgs.python3
       pkgs.p7zip
       pkgs.helvum
       pkgs.ranger
