@@ -20,7 +20,9 @@
 
 
   imports = [ 
+              ./software/hyprtoolkit/.
               ./software/hyprland/.
+              ./software/hyprlauncher/.
               ./software/unfreeList/. 
               ./pw-link/.
             ];
@@ -56,7 +58,35 @@
   programs.ashell = {
     enable = true;
     settings = {
-      primary_color = "#ffffff";
+      appearance = {
+        primary_color = "#8aadf4"; # Buttons etc # Buttons etc
+        text_color = "#cad3f5";
+        success_color = "#f5a97f";
+        workspace_colors = [ "#8aadf4" "#f5a97f" ]; # workspace buttons
+        special_workspace_colors = [ "#8aadf4" "#f5a97f" ];
+        danger_color = "#f5a97f"; # Ex performance icon
+        background_color = {
+          base = "#363a4f"; # Box background color
+          strong = "#1e2030"; # Mouse hover over color
+          weak = "#181926"; # Greyed out button color
+        };  
+
+        secondary_color = {
+          base = "#939ab7"; # slider tracks and borders
+        };
+
+
+
+
+
+
+
+
+
+
+
+        font_name = "Mononoki Nerd Font";
+      };
     };
   };
 
@@ -107,13 +137,10 @@
       pkgs.p7zip
       pkgs.helvum
       pkgs.ranger
-      pkgs.redshift
       pkgs.rpcs3
       pkgs.st
       pkgs.tigervnc
       pkgs.unrar 
-      #pkgs.vim-full
-#      pkgs.vmware-workstation
       pkgs.wineWowPackages.stable
       pkgs.winetricks
       pkgs.winbox
@@ -156,9 +183,9 @@
      
   # enable insecure software
 
-    nixpkgs.config.permittedInsecurePackages = [
-                "python-2.7.18.8"
-              ];
+    #nixpkgs.config.permittedInsecurePackages = [
+    #            "python-2.7.18.8"
+    #          ];
 
     
 

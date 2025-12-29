@@ -5,10 +5,13 @@
 
 
 
-programs.wofi.enable = true;
     programs.kitty = {
       enable = true;
       themeFile = "Catppuccin-Macchiato";
+      font = {
+        name = "Mononoki Nerd Font";
+        size = 12;
+      };
     };
     wayland.windowManager.hyprland.enable = true; 
 
@@ -63,7 +66,7 @@ programs.wofi.enable = true;
         "$mod, Q, killactive"
         "$mod, V, togglefloating"	
 	"bind = $mod, M, exit"
-        "bind = $mod, R, exec, wofi --show run"
+        "bind = $mod, R, exec, hyprlauncher"
 	"bind = $mod, E, exec, $fileManager"
 	"bind = $mod, R, exec, $menu"
 	"bind = $mod, P, pseudo" # dwindle
@@ -241,6 +244,15 @@ programs.wofi.enable = true;
 
 
 #¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸#
+
+
+#     |     '||'  '|' |''||''|  ..|''||    .|'''.|  |''||''|     |     '||''|.   |''||''|
+#    |||     ||    |     ||    .|'    ||   ||..  '     ||       |||     ||   ||     ||
+#   |  ||    ||    |     ||    ||      ||   ''|||.     ||      |  ||    ||''|'      ||
+#  .''''|.   ||    |     ||    '|.     || .     '||    ||     .''''|.   ||   |.     ||
+# .|.  .||.   '|..'     .||.    ''|...|'  |'....|'    .||.   .|.  .||. .||.  '|'   .||.
+
+    exec-once = [ "ashell" "hyprlauncher -d" ]; 
 
 
 

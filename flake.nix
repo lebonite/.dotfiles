@@ -10,6 +10,9 @@
             home-manager.url = "github:nix-community/home-manager";
             home-manager.inputs.nixpkgs.follows = "nixpkgs";
             nixpkgsStable.url = "github:nixos/nixpkgs/nixos-25.05";
+
+            hyprlauncher.url = "github:hyprwm/hyprlauncher";
+            hyprtoolkit.url = "github:hyprwm/hyprtoolkit";
             
         };
         
