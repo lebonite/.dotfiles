@@ -2,12 +2,15 @@
 
 {
   imports = [
+    ./software/ashell/.
     ./software/asunder/.
     ./software/darktable/.
     ./software/discord/.
     ./software/bash/.
     ./software/fonts/.
+    ./software/hyprtoolkit/.
     ./software/hyprland/.
+    ./software/hyprlauncher/.
     ./software/kitty/.
     ./software/networking/telnet/.
     ./software/nextcloud/.

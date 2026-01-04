@@ -8,7 +8,15 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+
     };
+    hyprlauncher.url = "github:hyprwm/hyprlauncher";
+    hyprtoolkit.url = "github:hyprwm/hyprtoolkit";
+            
+
+
+
+    
   };
 
   outputs =
