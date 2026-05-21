@@ -1,6 +1,6 @@
 #Stationär
 
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, pkgsStable, inputs, ... }:
 
 {
   imports =
@@ -9,16 +9,22 @@
       ./virtualisation/.
     ];
 
-
-  
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [ "video=DP-1:1280x960@90" ];
-  boot.supportedFilesystems = [ "ntfs" ]; 
-  boot.initrd.kernelModules = [ "amdgpu" ]; 
+    boot = {
+      loader.systemd-boot.enable = true;
+      loader.efi.canTouchEfiVariables = true;
+      kernelParams = [ "video=DP-1:1280x960@90" ];
+      supportedFilesystems = [ "ntfs" ]; 
+      initrd.kernelModules = [ "amdgpu" ];
+    };
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     networking.hostName = "GurkTornet"; # Define your hostname. 
     networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networking.wireguard.enable = true;
+
+    #-----------------RGB------------------------#
+    services.hardware.openrgb = {
+      enable = true;
+    };
 
     #-----------------locale mm------------------#
     time.timeZone = "Europe/Stockholm"; 
@@ -59,7 +65,24 @@
 #      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     }; 
   
+    #-----------------------polkit-----------------#
+security.polkit.enable = true;
 
+  systemd = {
+  user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+  };
+};
     #-----------------------Användare--------------#
 
 
@@ -78,13 +101,18 @@
       packages = with pkgs; [
         librewolf 
         tree
-        lutris
+        #polkit
+        polkit
+        lm_sensors
+        polkit_gnome
       ];
     };
   #--------------home-manager----------------#
 
+  programs.hyprland.enable = true;
+
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs pkgsStable; };
     users = { 
       "lebonite" = import ./home.nix;
     };
@@ -130,7 +158,8 @@
   #-------------------systempacket----------------------#   
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment = {
+    systemPackages = with pkgs; [
     # xdg-desktop-portal-gtk 
      git
      ifuse
@@ -146,11 +175,14 @@
      slurp
      grimblast
      gimp
+     openrgb
         
      
 
    ];
-  
+ }; 
+
+
   # unfree software
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "steam"
@@ -170,7 +202,10 @@
   
   #-------------------Virtualisering---------------------#
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.swtpm.enable = true;
+  };
   programs.virt-manager.enable = true;
 
   #------------------------------------------------------#
@@ -183,8 +218,6 @@
 
   #-------------IOS-support-------------#
   services.usbmuxd.enable = true;
-  #-------------Android-ADB-------------#
-  programs.adb.enable = true;
   #-------------Udev-rules--------------#
 
 
@@ -201,10 +234,11 @@
   # };
 
   # List services that you want to enable:
-
+   services.tailscale = { 
+     enable = true;
+   };
   # Enable the OpenSSH daemon.
    services.openssh.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

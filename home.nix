@@ -19,12 +19,15 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
 
+
   imports = [ 
+
+              ./software/authentication/.
               ./software/hyprtoolkit/.
               ./software/hyprland/.
               ./software/hyprlauncher/.
               ./software/unfreeList/. 
-              ./pw-link/.
+#              ./pw-link/.
             ];
   
    # programs.ags = {
@@ -54,7 +57,9 @@
   };
 
 
-
+  programs.htop = {
+    enable = true;
+  };
   programs.ashell = {
     enable = true;
     settings = {
@@ -107,6 +112,7 @@
  
   # The home.packages option allows you to install Nix packages into your
   # environment.
+  
   home.packages = [
       pkgs.sg3_utils
       pkgs.anki
@@ -124,7 +130,8 @@
       pkgs.kid3
       pkgs.kitty
       pkgs.libreoffice
-      pkgs.lutris
+      pkgs.lm_sensors
+      #pkgs.lutris
       pkgs.motrix
       pkgs.ncdu
       pkgs.nextcloud-client
@@ -135,17 +142,15 @@
       pkgs.protontricks
       pkgs.python3
       pkgs.p7zip
-      pkgs.helvum
       pkgs.ranger
-      pkgs.rpcs3
+#      pkgs.rpcs3
       pkgs.st
       pkgs.tigervnc
       pkgs.unrar 
-      pkgs.wineWowPackages.stable
-      pkgs.winetricks
+      #pkgs.wineWow64Packages.stable
+      #pkgs.winetricks
       pkgs.winbox
       pkgs.nerd-fonts.mononoki
-
 
 
 
@@ -155,7 +160,6 @@
   (pkgs.writeShellScriptBin "wake-thunderdrive" ''
     sg_raw /dev/sr0 EA 00 00 00 00 00 01
     '')                                               
-
 
 
 

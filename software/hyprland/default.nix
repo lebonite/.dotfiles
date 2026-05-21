@@ -4,7 +4,6 @@
 
 
 
-
     programs.kitty = {
       enable = true;
       themeFile = "Catppuccin-Macchiato";
@@ -13,7 +12,9 @@
         size = 12;
       };
     };
-    wayland.windowManager.hyprland.enable = true; 
+    wayland.windowManager.hyprland.enable = true;
+
+ 
 
 
 
@@ -70,7 +71,7 @@
 	"bind = $mod, E, exec, $fileManager"
 	"bind = $mod, R, exec, $menu"
 	"bind = $mod, P, pseudo" # dwindle
-	"bind = $mod, J, togglesplit" # dwindle
+        # does not exist ap"bind = $mod, J, togglesplit" # dwindle
         "$mod, 1 , exec, hyprctl dispatch workspace 1"
         "$mod, 2 , workspace, 2"
         "$mod, 3 , workspace, 3"
@@ -215,10 +216,10 @@
      };
 
 #¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø¤º°`°º¤ø,¸
-     dwindle = {
-       pseudotile = true; 
-       preserve_split = true;
-     };
+     # does not exist ap dwindle = {
+     #  pseudotile = true; 
+     #  preserve_split = true;
+     #};
      master = {
        new_status = "master";
      };
@@ -252,8 +253,8 @@
 #  .''''|.   ||    |     ||    '|.     || .     '||    ||     .''''|.   ||   |.     ||
 # .|.  .||.   '|..'     .||.    ''|...|'  |'....|'    .||.   .|.  .||. .||.  '|'   .||.
 
-    exec-once = [ "ashell" "hyprlauncher -d" ]; 
-
+    exec-once = [ "ashell" "hyprlauncher -d" "systemctl start --user polkit-gnome-authentication-agent-1" ]; 
+    
 
 
 
